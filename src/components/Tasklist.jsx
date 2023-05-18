@@ -1,13 +1,25 @@
-import { Task } from "./Task";
+import { Task } from './Task';
+export const Tasklist = ({ tasks, onToggleTask, onEditTask, onDeleteTask }) => {
+ 
+
+  return (
+    <div>
+      {tasks.map((tasks) => (
+        <Task
+          key={tasks.id}
+          id={tasks.id}
+          description={tasks.description}
+          completed={tasks.completed}
+          onToggleTask={onToggleTask}
+          editTask={onEditTask}
+          deleteTask={onDeleteTask}
+        />
+      ))}
+    </div>
+  );
+};
 
 
-// eslint-disable-next-line react/prop-types
-export const Tasklist = ({tasks}) => {
-    return (
-        <div>
-            {tasks.map((task) => (
-                <Task key={task.id} id={task.id} completed={task.completed} />
-            ))}
-        </div>
-    )
-}
+
+
+
