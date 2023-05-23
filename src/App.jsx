@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Header } from './components/Header';
-import { Tasklist } from './components/Tasklist';
+import { useState, useEffect } from 'react';
+import {Header} from './components/Header';
+import {Tasklist} from './components/Tasklist';
 
-const App = () => {
+ const App = () => {
   const [tasks, setTasks] = useState([]);
   const [description, setDescription] = useState('');
 
@@ -42,9 +42,17 @@ const App = () => {
     });
   };
 
-  const handleEditTask = (taskId) => {
+  const handleEditTask = (taskId, newDescription) => {
     setTasks((prevTasks) => {
-      return prevTasks.filter((task) => task.id !== taskId);
+      return prevTasks.map((task) => {
+        if (task.id === taskId) {
+          return {
+            ...task,
+            description: newDescription,
+          };
+        }
+        return task;
+      });
     });
   };
 

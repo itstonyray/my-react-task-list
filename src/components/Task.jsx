@@ -1,16 +1,17 @@
 import React, { useCallback } from 'react';
 
-export const Task = ({ id, completed, description, onEditTask, onDeleteTask }) => {
+const Task = ({ id, completed, description, onEditTask, onDeleteTask }) => {
   const handleCheckboxChange = useCallback(() => {
+    onEditTask(id, !completed);
   }, 
-  [id]);
+  [onEditTask, id, completed]);
 
-  const handleEditTask = (() => {
-   onEditTask(id);
+  const handleEditTask = useCallback((newDescription) => {
+    onEditTask(id, newDescription);
   }, 
   [onEditTask, id]);
 
-  const handleDeleteTask = (() => {
+  const handleDeleteTask = useCallback(() => {
     onDeleteTask(id);
   }, 
   [onDeleteTask, id]);
@@ -18,9 +19,11 @@ export const Task = ({ id, completed, description, onEditTask, onDeleteTask }) =
   return (
     <div>
       <input type="checkbox" checked={completed} onChange={handleCheckboxChange} />
-      <span style={{ textDecoration: completed ? 'line-through' : 'none' }}>{description}</span>
-      <button onClick={handleEditTask}>Edit</button>
+      <span className={completed ? 'completed' : 'not-completed'}>{description}</span>
+      <button onClick={() => handleEditTask('New Description')}>Edit</button>
       <button onClick={handleDeleteTask}>Delete</button>
     </div>
   );
 };
+
+// Components used: useCallback, input, span, button.
