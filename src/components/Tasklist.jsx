@@ -1,5 +1,5 @@
 import { Task } from './Task';
-export const Tasklist = ({ tasks, onToggleTask, onEditTask, onDeleteTask }) => {
+export const TaskList = ({ tasks, onToggleTask, onEditTask, onDeleteTask }) => {
   
   return (
   

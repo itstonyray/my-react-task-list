@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {Header} from './components/Header';
-import {Tasklist} from './components/Tasklist';
+import {TaskList} from './components/TaskList';
 
  const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -75,7 +75,7 @@ import {Tasklist} from './components/Tasklist';
         />
         <button type="submit">Add Task</button>
       </form>
-      <Tasklist
+      <TaskList
         tasks={tasks}
         onToggleTask={handleToggleTask}
         onEditTask={handleEditTask}
