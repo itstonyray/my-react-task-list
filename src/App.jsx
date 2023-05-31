@@ -1,66 +1,22 @@
 import { useState, useEffect } from 'react';
-import {Header} from './components/Header';
-import {TaskList} from './components/TaskList';
+import { Header } from './components/Header';
+import { TaskList } from './components/TaskList';
+import useTaskList from './hooks/useTaskList';
 
- const App = () => {
-  const [tasks, setTasks] = useState([]);
+const App = () => {
+  const { tasks, createTask, deleteTask, updateTask, toggleTask } = useTaskList();
   const [description, setDescription] = useState('');
-
-  useEffect(() => {
-    const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    setTasks(storedTasks);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }, [tasks]);
 
   const handleAddTask = (e) => {
     e.preventDefault();
     if (description.trim() !== '') {
-      const newTask = {
-        id: tasks.length + 1,
-        description: description,
-        completed: false,
-      };
-      setTasks([...tasks, newTask]);
+      createTask(description);
       setDescription('');
     }
   };
 
-  const handleToggleTask = (taskId) => {
-    setTasks((prevTasks) => {
-      return prevTasks.map((task) => {
-        if (task.id === taskId) {
-          return {
-            ...task,
-            completed: !task.completed,
-          };
-        }
-        return task;
-      });
-    });
-  };
+  
 
-  const handleEditTask = (taskId, newDescription) => {
-    setTasks((prevTasks) => {
-      return prevTasks.map((task) => {
-        if (task.id === taskId) {
-          return {
-            ...task,
-            description: newDescription,
-          };
-        }
-        return task;
-      });
-    });
-  };
-
-  const handleDeleteTask = (taskId) => {
-    setTasks((prevTasks) => {
-      return prevTasks.filter((task) => task.id !== taskId);
-    });
-  };
 
   return (
     <>
@@ -77,9 +33,9 @@ import {TaskList} from './components/TaskList';
       </form>
       <TaskList
         tasks={tasks}
-        onToggleTask={handleToggleTask}
-        onEditTask={handleEditTask}
-        onDeleteTask={handleDeleteTask}
+        onToggleTask={toggleTask}
+        onEditTask={updateTask}
+        onDeleteTask={deleteTask}
       />
     </>
   );

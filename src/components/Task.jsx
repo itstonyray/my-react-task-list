@@ -18,16 +18,15 @@ export const Task = ({ id, completed, description, onEditTask, onDeleteTask }) =
   return (
     <div>
       <input type="checkbox" checked={completed} onChange={handleCheckboxChange} />
-      {editedDescription !== null ? (
         <input
           type="text"
           value={editedDescription}
           onChange={(e) => setEditedDescription(e.target.value)}
         />
-      ) : (
+       : (
         <span className={completed ? 'completed' : 'not-completed'}>{description}</span>
-      )}
-     <button onClick={() => {handleEditTask('New Description'); setonClickEdit(!onClickEdit)}}>Edit</button>
+      )
+     <button onClick= {handleEditTask}>Edit</button>
       <button onClick={handleDeleteTask}>Delete</button>
     </div>
   );
