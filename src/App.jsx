@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import {Header} from './components/Header';
-import {TaskList} from './components/TaskList';
+import { Header } from './components/Header';
+import { TaskList } from './components/TaskList';
 
- const App = () => {
+const App = () => {
   const [tasks, setTasks] = useState([]);
   const [description, setDescription] = useState('');
 
@@ -23,14 +23,14 @@ import {TaskList} from './components/TaskList';
         description: description,
         completed: false,
       };
-      setTasks([...tasks, newTask]);
+      setTasks((prevTasks) => [...prevTasks, newTask]);
       setDescription('');
     }
   };
 
   const handleToggleTask = (taskId) => {
-    setTasks((prevTasks) => {
-      return prevTasks.map((task) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) => {
         if (task.id === taskId) {
           return {
             ...task,
@@ -38,13 +38,13 @@ import {TaskList} from './components/TaskList';
           };
         }
         return task;
-      });
-    });
+      })
+    );
   };
 
   const handleEditTask = (taskId, newDescription) => {
-    setTasks((prevTasks) => {
-      return prevTasks.map((task) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) => {
         if (task.id === taskId) {
           return {
             ...task,
@@ -52,14 +52,12 @@ import {TaskList} from './components/TaskList';
           };
         }
         return task;
-      });
-    });
+      })
+    );
   };
 
   const handleDeleteTask = (taskId) => {
-    setTasks((prevTasks) => {
-      return prevTasks.filter((task) => task.id !== taskId);
-    });
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
   };
 
   return (
