@@ -18,16 +18,16 @@ const taskListReducer = (state, action) => {
         }
         return task;
       });
-      case 'TOGGLE_TASK':
-    return state.map((task) => {
-      if (task.id === action.payload) {
-        return {
-          ...task,
-          completed: !task.completed,
-        };
-      }
-      return task;
-    });
+    case 'TOGGLE_TASK':
+      return state.map((task) => {
+        if (task.id === action.payload) {
+          return {
+            ...task,
+            completed: !task.completed,
+          };
+        }
+        return task;
+      });
     default:
       return state;
   }
@@ -73,4 +73,3 @@ const useTaskList = () => {
 };
 
 export default useTaskList;
-

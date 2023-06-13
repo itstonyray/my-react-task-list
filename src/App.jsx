@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Header } from './components/Header';
 import { TaskList } from './components/TaskList';
 import useTaskList from './hooks/useTaskList';
@@ -14,9 +14,6 @@ const App = () => {
       setDescription('');
     }
   };
-
-  
-
 
   return (
     <>

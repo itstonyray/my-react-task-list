@@ -1,8 +1,6 @@
 import { Task } from './Task';
 export const TaskList = ({ tasks, onToggleTask, onEditTask, onDeleteTask }) => {
 
-
-
   
   return (
   
@@ -21,4 +19,3 @@ export const TaskList = ({ tasks, onToggleTask, onEditTask, onDeleteTask }) => {
     </div>
   );
 };
-
