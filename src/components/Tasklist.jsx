@@ -1,7 +1,6 @@
 import { Task } from './Task';
 export const TaskList = ({ tasks, onToggleTask, onEditTask, onDeleteTask }) => {
 
-  
   return (
   
     <div>
