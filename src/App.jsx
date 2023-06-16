@@ -1,7 +1,7 @@
 import { Header } from './components/Header';
 import { TaskList } from './components/TaskList';
 import useTaskList from './hooks/useTaskList';
-import ContactForm from './components/ContactForm';
+import TaskForm from './components/TaskForm';
 
 const App = () => {
   const { tasks, createTask, deleteTask, updateTask, toggleTask } = useTaskList();
@@ -9,7 +9,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <ContactForm createTask={createTask} />
+      <TaskForm createTask={createTask} />
       <TaskList
         tasks={tasks}
         onToggleTask={toggleTask}
