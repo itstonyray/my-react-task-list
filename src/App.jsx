@@ -1,22 +1,22 @@
-import { Header } from './components/Header';
-import { TaskList } from './components/TaskList';
-import useTaskList from './hooks/useTaskList';
-import TaskForm from './components/TaskForm';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import {Home} from './components/Home';
+import {Tareas} from './components/Tareas';
+import {SobreNosotros} from './components/SobreNosotros';
+import {Menu} from './components/Menu';
 
 const App = () => {
-  const { tasks, createTask, deleteTask, updateTask, toggleTask } = useTaskList();
-
   return (
-    <>
-      <Header />
-      <TaskForm createTask={createTask} />
-      <TaskList
-        tasks={tasks}
-        onToggleTask={toggleTask}
-        onEditTask={updateTask}
-        onDeleteTask={deleteTask}
-      />
-    </>
+    
+      <div className='App'>
+        <Menu />
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/tareas" element={<Tareas/>} />
+          <Route path="/sobre-nosotros" element={<SobreNosotros/>} />
+        </Routes>
+      </div>
+  
   );
 };
 
